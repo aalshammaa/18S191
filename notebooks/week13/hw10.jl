@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.14.5
+# v0.14.7
 
 using Markdown
 using InteractiveUtils
@@ -234,7 +234,7 @@ md"""
 👉 Create a graph to visualize ECS as a function of B. 
 """
 
-# ╔═╡ b9f882d8-266b-11eb-2998-75d6539088c7
+# ╔═╡ 2ea42aa3-8a12-4ddc-99c2-db360eacf59a
 
 
 # ╔═╡ 269200ec-259f-11eb-353b-0b73523ef71a
@@ -759,8 +759,8 @@ TODO = html"<span style='display: inline; font-size: 2em; color: purple; font-we
 # ╟─930d7154-1fbf-11eb-1c3a-b1970d291811
 # ╟─1312525c-1fc0-11eb-2756-5bc3101d2260
 # ╠═c4398f9c-1fc4-11eb-0bbb-37f066c6027d
-# ╠═7f961bc0-1fc5-11eb-1f18-612aeff0d8df
-# ╟─25f92dec-1fc4-11eb-055d-f34deea81d0e
+# ╟─7f961bc0-1fc5-11eb-1f18-612aeff0d8df
+# ╠═25f92dec-1fc4-11eb-055d-f34deea81d0e
 # ╟─fa7e6f7e-2434-11eb-1e61-1b1858bb0988
 # ╟─16348b6a-1fc2-11eb-0b9c-65df528db2a1
 # ╟─e296c6e8-259c-11eb-1385-53f757f4d585
@@ -770,7 +770,7 @@ TODO = html"<span style='display: inline; font-size: 2em; color: purple; font-we
 # ╟─56b68356-2601-11eb-39a9-5f4b8e580b87
 # ╟─7d815988-1fc7-11eb-322a-4509e7128ce3
 # ╟─aed8f00e-266b-11eb-156d-8bb09de0dc2b
-# ╠═b9f882d8-266b-11eb-2998-75d6539088c7
+# ╠═2ea42aa3-8a12-4ddc-99c2-db360eacf59a
 # ╟─269200ec-259f-11eb-353b-0b73523ef71a
 # ╠═e10a9b70-25a0-11eb-2aed-17ed8221c208
 # ╟─2dfab366-25a1-11eb-15c9-b3dd9cd6b96c
