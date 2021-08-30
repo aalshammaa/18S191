@@ -18,6 +18,13 @@ filter!(LOAD_PATH) do path
 	path != "@v#.#"
 end;
 
+# ╔═╡ 65780f00-ed6b-11ea-1ecf-8b35523a7ac0
+begin
+	using Images
+	# using PlutoUI
+	using HypertextLiteral
+end
+
 # ╔═╡ ac8ff080-ed61-11ea-3650-d9df06123e1f
 md"""
 
@@ -367,7 +374,7 @@ _At the end of this homework, you can see all of your filters applied to your we
 # ╔═╡ 63e8d636-ee0b-11ea-173d-bd3327347d55
 function invert(color::AbstractRGB)
 	# your code here!
-	return missing
+	return RGB(1 - color.r, 1 - color.g, 1 - color.b)
 end
 
 # ╔═╡ 2cc2f84e-ee0d-11ea-373b-e7ad3204bb00
@@ -389,7 +396,7 @@ invert(color_red)
 md"👉 Can you invert the picture of Philip?"
 
 # ╔═╡ 943103e2-ee0b-11ea-33aa-75a8a1529931
-philip_inverted = missing # replace `missing` with your code!
+philip_inverted = invert.(philip_head) # replace `missing` with your code!
 
 # ╔═╡ 55b138b7-19fb-4da1-9eb1-1e8304528251
 md"""
@@ -405,7 +412,7 @@ md"""
 # ╔═╡ fbd1638d-8d7a-4d12-aff9-9c160cc3fd74
 function quantize(x::Number)
 	# your code here!
-	return missing
+	return floor(x, digits = 1)
 end
 
 # ╔═╡ 7720740e-2d2b-47f7-98fd-500ed3eee479
@@ -460,7 +467,7 @@ The method you write should return a new `RGB` object, in which each component (
 # ╔═╡ 04e6b486-ceb7-45fe-a6ca-733703f16357
 function quantize(color::AbstractRGB)
 	# your code here!
-	return missing
+	return RGB(quantize(color.r), quantize(color.g), quantize(color.b)) 
 end
 
 # ╔═╡ f6bf64da-ee07-11ea-3efb-05af01b14f67
@@ -472,7 +479,7 @@ md"""
 # ╔═╡ 13e9ec8d-f615-4833-b1cf-0153010ccb65
 function quantize(image::AbstractMatrix)
 	# your code here!
-	return missing
+	return quantize.(image)
 end
 
 # ╔═╡ f6a655f8-ee07-11ea-13b6-43ca404ddfc7
@@ -493,7 +500,14 @@ md"""
 # ╔═╡ f38b198d-39cf-456f-a841-1ba08f206010
 function noisify(x::Number, s)
 	# your code here!
-	return missing
+	noise = 2s * rand() - s
+	return clamp(x + noise, 0, 1)
+end
+
+# ╔═╡ bfeaec47-675e-4b76-96c6-4ff7fc0482ab
+x = let
+	s = 2
+	2 * s - s
 end
 
 # ╔═╡ f6fc1312-ee07-11ea-39a0-299b67aee3d8
@@ -506,7 +520,7 @@ Use your previous method for `noisify`. _(Remember that Julia chooses which meth
 # ╔═╡ db4bad9f-df1c-4640-bb34-dd2fe9bdce18
 function noisify(color::AbstractRGB, s)
 	# your code here!
-	return missing
+	return RGB(noisify(color.r, s), noisify(color.g, s), noisify(color.b, s))
 end
 
 # ╔═╡ 0000b7f8-4c43-4dd8-8665-0dfe59e74c0a
@@ -540,11 +554,11 @@ md"""
 # ╔═╡ 21a5885d-00ab-428b-96c3-c28c98c4ca6d
 function noisify(image::AbstractMatrix, s)
 	# your code here!
-	return missing
+	return noisify.(image, s)
 end
 
 # ╔═╡ 1ea53f41-b791-40e2-a0f8-04e13d856829
-noisify(0.5, 0.1) # edit this test case!
+noisify(0.5, 2) # edit this test case!
 
 # ╔═╡ 7e4aeb70-ee1b-11ea-100f-1952ba66f80f
 (original=color_red, with_noise=noisify(color_red, color_noise))
@@ -565,7 +579,7 @@ Move the slider below to set the amount of noise applied to the image of Philip.
 """
 
 # ╔═╡ e70a84d4-ee0c-11ea-0640-bf78653ba102
-@bind philip_noise Slider(0:0.01:1, show_value=true)
+@bind philip_noise Slider(0:0.01:10, show_value=true)
 
 # ╔═╡ ac15e0d0-ee0c-11ea-1eaf-d7f88b5df1d7
 noisify(philip_head, philip_noise)
@@ -604,7 +618,7 @@ function custom_filter(pixel::AbstractRGB)
 	
 	# your code here!
 	
-	return pixel
+	return RGB(pixel.b, pixel.r, pixel.g)
 end
 
 # ╔═╡ 9e5a08dd-332a-486b-94ab-15c49e72e522
@@ -1279,13 +1293,6 @@ custom_filter(cam_image)
 
 # ╔═╡ 83eb9ca0-ed68-11ea-0bc5-99a09c68f867
 md"_homework 1, version 7_"
-
-# ╔═╡ 65780f00-ed6b-11ea-1ecf-8b35523a7ac0
-begin
-	using Images
-	using PlutoUI
-	using HypertextLiteral
-end
 
 # ╔═╡ a5ef762d-7ddb-4fc8-88a4-716b89f3dd7e
 png_joinpathsplit__FILE__1assetsimagepng = let
@@ -2103,7 +2110,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─c54ccdea-ee05-11ea-0365-23aaf053b7d7
 # ╠═f6898df6-ee07-11ea-2838-fde9bc739c11
 # ╠═5be9b144-ee0d-11ea-2a8d-8775de265a1d
-# ╠═4d0158d0-ee0d-11ea-17c3-c169d4284acb
+# ╟─4d0158d0-ee0d-11ea-17c3-c169d4284acb
 # ╟─5f6635b4-63ed-4a62-969c-bd4084a8202f
 # ╟─f6cc03a0-ee07-11ea-17d8-013991514d42
 # ╠═63e8d636-ee0b-11ea-173d-bd3327347d55
@@ -2136,6 +2143,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═9751586e-ee0c-11ea-0cbb-b7eda92977c9
 # ╟─f6d6c71a-ee07-11ea-2b63-d759af80707b
 # ╠═f38b198d-39cf-456f-a841-1ba08f206010
+# ╠═bfeaec47-675e-4b76-96c6-4ff7fc0482ab
 # ╠═1ea53f41-b791-40e2-a0f8-04e13d856829
 # ╟─31ef3710-e4c9-4aa7-bd8f-c69cc9a977ee
 # ╟─f6ef2c2e-ee07-11ea-13a8-2512e7d94426
