@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.14.0
+# v0.15.1
 
 using Markdown
 using InteractiveUtils
@@ -15,15 +15,15 @@ end
 
 # ╔═╡ 65780f00-ed6b-11ea-1ecf-8b35523a7ac0
 begin
-	import Pkg
-	Pkg.activate(mktempdir())
-	Pkg.add([
-			Pkg.PackageSpec(name="Images", version="0.22.4"), 
-			Pkg.PackageSpec(name="ImageMagick", version="0.7"), 
-			Pkg.PackageSpec(name="PlutoUI", version="0.7"), 
-			Pkg.PackageSpec(name="HypertextLiteral", version="0.5"),
-			Pkg.PackageSpec(name="OffsetArrays"),
-			])
+	# import Pkg
+	# Pkg.activate(mktempdir())
+	# Pkg.add([
+			# Pkg.PackageSpec(name="Images", version="0.22.4"), 
+			# Pkg.PackageSpec(name="ImageMagick", version="0.7"), 
+			# Pkg.PackageSpec(name="PlutoUI", version="0.7"), 
+			# Pkg.PackageSpec(name="HypertextLiteral", version="0.5"),
+			# Pkg.PackageSpec(name="OffsetArrays"),
+			# ])
 
 	using Images
 	using PlutoUI
