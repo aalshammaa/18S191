@@ -260,7 +260,7 @@ md"""
 # ╔═╡ a8b2270a-600c-4f83-939e-dc5ab35f4735
 function get_red(pixel::AbstractRGB)
 	# your code here!
-	return missing
+	return pixel.r
 end
 
 # ╔═╡ c320b39d-4cea-4fa1-b1ce-053c898a67a6
@@ -275,7 +275,7 @@ md"""
 # ╔═╡ ebe1d05c-f6aa-437d-83cb-df0ba30f20bf
 function get_reds(image::AbstractMatrix)
 	# your code here!
-	return missing
+	return get_red.(image)
 end
 
 # ╔═╡ c427554a-6f6a-43f1-b03b-f83239887cee
@@ -311,7 +311,7 @@ Use the ➕ button at the bottom left of this cell to add more cells.
 """
 
 # ╔═╡ 21ba6e75-55a2-4614-9b5d-ea6378bf1d98
-
+value_as_color.(get_reds(philip_head))
 
 # ╔═╡ f7825c18-ff28-4e23-bf26-cc64f2f5049a
 md"""
@@ -321,7 +321,28 @@ md"""
 """
 
 # ╔═╡ d994e178-78fd-46ab-a1bc-a31485423cad
+function get_green(pixel::AbstractRGB)
+	# your code here!
+	return pixel.g
+end
 
+# ╔═╡ 30660dfa-7b6e-4712-8701-f6f0a5b42a78
+function get_greens(image::AbstractMatrix)
+	# your code here!
+	return get_green.(image)
+end
+
+# ╔═╡ 1071fd2a-ee01-4e37-8182-a28232668a97
+function get_blue(pixel::AbstractRGB)
+	# your code here!
+	return pixel.b
+end
+
+# ╔═╡ 92ca14d7-dc12-4c38-8950-c036659f5c71
+function get_blues(image::AbstractMatrix)
+
+	return get_blue.(image)
+end
 
 # ╔═╡ c54ccdea-ee05-11ea-0365-23aaf053b7d7
 md"""
@@ -332,7 +353,7 @@ md"""
 # ╔═╡ f6898df6-ee07-11ea-2838-fde9bc739c11
 function mean_color(image)
 	# your code here!
-	return missing
+	return RGB(mean(get_reds(image)), mean(get_greens(image)), mean(get_blues(image)))
 end
 
 # ╔═╡ 5be9b144-ee0d-11ea-2a8d-8775de265a1d
@@ -2076,10 +2097,13 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═21ba6e75-55a2-4614-9b5d-ea6378bf1d98
 # ╟─f7825c18-ff28-4e23-bf26-cc64f2f5049a
 # ╠═d994e178-78fd-46ab-a1bc-a31485423cad
+# ╠═30660dfa-7b6e-4712-8701-f6f0a5b42a78
+# ╠═1071fd2a-ee01-4e37-8182-a28232668a97
+# ╠═92ca14d7-dc12-4c38-8950-c036659f5c71
 # ╟─c54ccdea-ee05-11ea-0365-23aaf053b7d7
 # ╠═f6898df6-ee07-11ea-2838-fde9bc739c11
 # ╠═5be9b144-ee0d-11ea-2a8d-8775de265a1d
-# ╟─4d0158d0-ee0d-11ea-17c3-c169d4284acb
+# ╠═4d0158d0-ee0d-11ea-17c3-c169d4284acb
 # ╟─5f6635b4-63ed-4a62-969c-bd4084a8202f
 # ╟─f6cc03a0-ee07-11ea-17d8-013991514d42
 # ╠═63e8d636-ee0b-11ea-173d-bd3327347d55
