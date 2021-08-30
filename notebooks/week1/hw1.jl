@@ -18,13 +18,6 @@ filter!(LOAD_PATH) do path
 	path != "@v#.#"
 end;
 
-# ╔═╡ 65780f00-ed6b-11ea-1ecf-8b35523a7ac0
-begin
-	using Images
-	using PlutoUI
-	using HypertextLiteral
-end
-
 # ╔═╡ ac8ff080-ed61-11ea-3650-d9df06123e1f
 md"""
 
@@ -83,7 +76,7 @@ $(html"<br>")
 """
 
 # ╔═╡ f51333a6-eded-11ea-34e6-bfbb3a69bcb0
-random_vect = missing # replace `missing` with your code!
+random_vect = rand(10) # replace `missing` with your code!
 
 # ╔═╡ 5da8cbe8-eded-11ea-2e43-c5b7cc71e133
 begin
@@ -103,8 +96,11 @@ md"#### Exerise 1.2
 
 # ╔═╡ bd907ee1-5253-4cae-b5a5-267dac24362a
 function my_sum(xs)
-	# your code here!
-	return missing
+	result = 0.0
+	for i in xs
+		result += i
+	end
+	return result
 end
 
 # ╔═╡ 6640110a-d171-4b32-8d12-26979a36b718
@@ -116,8 +112,7 @@ md"#### Exerise 1.3
 
 # ╔═╡ 0ffa8354-edee-11ea-2883-9d5bfea4a236
 function mean(xs)
-	# your code here!
-	return missing
+	return my_sum(xs)/length(xs)
 end
 
 # ╔═╡ 1f104ce4-ee0e-11ea-2029-1d9c817175af
@@ -127,7 +122,7 @@ mean([1, 2, 3])
 md"👉 Define `m` to be the mean of `random_vect`."
 
 # ╔═╡ 2a391708-edee-11ea-124e-d14698171b68
-m = missing # replace `missing` with your code!
+m = mean(random_vect) # replace `missing` with your code!
 
 # ╔═╡ e2863d4c-edef-11ea-1d67-332ddca03cc4
 md"""#### Exerise 1.4
@@ -152,8 +147,8 @@ md"""
 
 # ╔═╡ ec5efe8c-edef-11ea-2c6f-afaaeb5bc50c
 function demean(xs)
-	# your code here!
-	return missing
+	xs_copy = copy(xs)
+	return xs_copy .- mean(xs)
 end
 
 # ╔═╡ d6ddafdd-1a44-48c7-b49a-554073cdf331
@@ -193,8 +188,11 @@ md"""
 
 # ╔═╡ b6b65b94-edf0-11ea-3686-fbff0ff53d08
 function create_bar()
-	# your code here!
-	return missing
+	bar = zeros(100)
+	middle = 10
+	
+	bar[100÷2-middle:100÷2+middle] .= 1
+	return bar
 end
 
 # ╔═╡ 4a5e9d2c-dd90-4bb0-9e31-3f5c834406b4
@@ -1261,6 +1259,19 @@ custom_filter(cam_image)
 # ╔═╡ 83eb9ca0-ed68-11ea-0bc5-99a09c68f867
 md"_homework 1, version 7_"
 
+# ╔═╡ 65780f00-ed6b-11ea-1ecf-8b35523a7ac0
+begin
+	using Images
+	using PlutoUI
+	using HypertextLiteral
+end
+
+# ╔═╡ a5ef762d-7ddb-4fc8-88a4-716b89f3dd7e
+png_joinpathsplit__FILE__1assetsimagepng = let
+    import PlutoUI
+    PlutoUI.LocalResource(joinpath(split(@__FILE__, '#')[1] * ".assets", "image.png"))
+end
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -2005,7 +2016,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─ad6a33b0-eded-11ea-324c-cfabfd658b56
 # ╠═f51333a6-eded-11ea-34e6-bfbb3a69bcb0
 # ╟─b18e2c54-edf1-11ea-0cbf-85946d64b6a2
-# ╠═397941fc-edee-11ea-33f2-5d46c759fbf7
+# ╟─397941fc-edee-11ea-33f2-5d46c759fbf7
 # ╟─b1d5ca28-edf6-11ea-269e-75a9fb549f1d
 # ╟─5da8cbe8-eded-11ea-2e43-c5b7cc71e133
 # ╟─77adb065-bfd4-4680-9c2a-ad4d92689dbf
@@ -2148,5 +2159,6 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─dfb7c6be-ee0d-11ea-194e-9758857f7b20
 # ╟─e15ad330-ee0d-11ea-25b6-1b1b3f3d7888
 # ╟─83eb9ca0-ed68-11ea-0bc5-99a09c68f867
+# ╠═a5ef762d-7ddb-4fc8-88a4-716b89f3dd7e
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
