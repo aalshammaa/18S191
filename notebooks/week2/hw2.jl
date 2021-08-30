@@ -13,6 +13,11 @@ macro bind(def, element)
     end
 end
 
+# ╔═╡ f7a6d7c3-37b9-437d-8b8e-853665ddbae3
+filter!(LOAD_PATH) do path
+	path != "@v#.#"
+end;
+
 # ╔═╡ 65780f00-ed6b-11ea-1ecf-8b35523a7ac0
 begin
 	# import Pkg
@@ -30,11 +35,6 @@ begin
 	using HypertextLiteral
 	using OffsetArrays
 end
-
-# ╔═╡ f7a6d7c3-37b9-437d-8b8e-853665ddbae3
-filter!(LOAD_PATH) do path
-	path != "@v#.#"
-end;
 
 # ╔═╡ 83eb9ca0-ed68-11ea-0bc5-99a09c68f867
 md"_homework 2, version 1_"
