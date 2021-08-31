@@ -92,7 +92,7 @@ Let's create a vector `v` of random numbers of length `n=100`.
 """
 
 # ╔═╡ 7fcd6230-ee09-11ea-314f-a542d00d582e
-n = 60
+n = 100
 
 # ╔═╡ 7fdb34dc-ee09-11ea-366b-ffe10d1aa845
 v = rand(n)
@@ -127,8 +127,7 @@ A better solution is to use the *closest* value that is inside the vector. Effec
 
 # ╔═╡ 802bec56-ee09-11ea-043e-51cf1db02a34
 function extend(v::AbstractVector, i)
-	
-	return missing
+	return v[clamp(i, 1, length(v))]
 end
 
 # ╔═╡ b7f3994c-ee1b-11ea-211a-d144db8eafc2
@@ -159,7 +158,7 @@ md"""
 # ╔═╡ 5fdc5d0d-a52c-476e-b3b5-3b6364b706e4
 function mean(v)
 	
-	return missing
+	return sum(v)/length(v)
 end
 
 # ╔═╡ e84c9cc2-e6e1-46f1-bf4e-9605da5e6f4a
@@ -172,7 +171,6 @@ Return a vector of the same size as `v`.
 
 # ╔═╡ 807e5662-ee09-11ea-3005-21fdcc36b023
 function box_blur(v::AbstractArray, l)
-	
 	return missing
 end
 
@@ -1781,7 +1779,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╟─806e5766-ee0f-11ea-1efc-d753cd83d086
 # ╠═38da843a-ee0f-11ea-01df-bfa8b1317d36
 # ╟─9bde9f92-ee0f-11ea-27f8-ffef5fce2b3c
-# ╟─45c4da9a-ee0f-11ea-2c5b-1f6704559137
+# ╠═45c4da9a-ee0f-11ea-2c5b-1f6704559137
 # ╟─431ba330-0f72-416a-92e9-55f51ff3bcd1
 # ╠═5fdc5d0d-a52c-476e-b3b5-3b6364b706e4
 # ╟─e84c9cc2-e6e1-46f1-bf4e-9605da5e6f4a
