@@ -176,13 +176,10 @@ md"""
 """
 
 # ╔═╡ e555a7e6-f11a-43ac-8218-6d832f0ce251
-
-
-# ╔═╡ 302f0842-453f-47bd-a74c-7942d8c96485
-
+colored_line(v)
 
 # ╔═╡ 7d80a1ea-a0a9-41b2-9cfe-a334717ab2f4
-
+@bind l_box Slider(1:10, default = 1, show_value = true)
 
 # ╔═╡ 80ab64f4-ee09-11ea-29b4-498112ed0799
 md"""
@@ -334,15 +331,12 @@ end
 
 # ╔═╡ 807e5662-ee09-11ea-3005-21fdcc36b023
 function box_blur(v::AbstractArray, l)
-	result = copy(v)
-	for i in 1:length(v)
-		result[i] = mean([extend(v, j) for j in i-l:i+l])
-	end
-	return result
+
+	return [mean([extend(v, i) for i in j-l:j+l]) for j in 1:length(v)]
 end
 
 # ╔═╡ 4f08ebe8-b781-4a32-a218-5ecd8338561d
-colored_line(box_blur(example_vector, 3))
+colored_line(box_blur(example_vector, 1))
 
 # ╔═╡ 808deca8-ee09-11ea-0ee3-1586fa1ce282
 let
@@ -359,6 +353,9 @@ let
 	catch
 	end
 end
+
+# ╔═╡ 302f0842-453f-47bd-a74c-7942d8c96485
+colored_line(box_blur(v, l_box))
 
 # ╔═╡ bbe1a562-8d97-4112-a88a-c45c260f574d
 let
