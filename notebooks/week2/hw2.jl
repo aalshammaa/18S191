@@ -169,30 +169,6 @@ md"""
 Return a vector of the same size as `v`.
 """
 
-# ╔═╡ 807e5662-ee09-11ea-3005-21fdcc36b023
-function box_blur(v::AbstractArray, l)
-	return missing
-end
-
-# ╔═╡ 4f08ebe8-b781-4a32-a218-5ecd8338561d
-colored_line(box_blur(example_vector, 1))
-
-# ╔═╡ 808deca8-ee09-11ea-0ee3-1586fa1ce282
-let
-	try
-		test_v = rand(n)
-		original = copy(test_v)
-		box_blur(test_v, 5)
-		if test_v != original
-			md"""
-			!!! danger "Oopsie!"
-			    It looks like your function _modifies_ `v`. Can you write it without doing so? Maybe you can use `copy`.
-			"""
-		end
-	catch
-	end
-end
-
 # ╔═╡ 809f5330-ee09-11ea-0e5b-415044b6ac1f
 md"""
 #### Exercise 1.4
@@ -256,12 +232,6 @@ box_blur_kernel_test = box_blur_kernel(box_kernel_l)
 md"""
 Let's apply your kernel to our test vector `v` (first cell), and compare the result to our previous box blur function (second cell). The two should be identical.
 """
-
-# ╔═╡ bbe1a562-8d97-4112-a88a-c45c260f574d
-let
-	result = box_blur(v, box_kernel_l)
-	colored_line(result)
-end
 
 # ╔═╡ 03f91a22-1c3e-4c42-9d78-1ee36851a120
 md"""
@@ -360,6 +330,40 @@ if extend(v,1) === missing
 	missing
 else
 	colored_line([extend(example_vector, i) for i in -1:length(example_vector)+2])
+end
+
+# ╔═╡ 807e5662-ee09-11ea-3005-21fdcc36b023
+function box_blur(v::AbstractArray, l)
+	result = copy(v)
+	for i in 1:length(v)
+		result[i] = mean([extend(v, j) for j in i-l:i+l])
+	end
+	return result
+end
+
+# ╔═╡ 4f08ebe8-b781-4a32-a218-5ecd8338561d
+colored_line(box_blur(example_vector, 3))
+
+# ╔═╡ 808deca8-ee09-11ea-0ee3-1586fa1ce282
+let
+	try
+		test_v = rand(n)
+		original = copy(test_v)
+		box_blur(test_v, 5)
+		if test_v != original
+			md"""
+			!!! danger "Oopsie!"
+			    It looks like your function _modifies_ `v`. Can you write it without doing so? Maybe you can use `copy`.
+			"""
+		end
+	catch
+	end
+end
+
+# ╔═╡ bbe1a562-8d97-4112-a88a-c45c260f574d
+let
+	result = box_blur(v, box_kernel_l)
+	colored_line(result)
 end
 
 # ╔═╡ 9afc4dca-ee16-11ea-354f-1d827aaa61d2
