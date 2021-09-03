@@ -197,12 +197,6 @@ Again, we need to take care about what happens if $v_{i -m }$ falls off the end 
    You will either need to do the necessary manipulation of indices by hand, or use the `OffsetArrays.jl` package.
 """
 
-# ╔═╡ 28e20950-ee0c-11ea-0e0a-b5f2e570b56e
-function convolve(v::AbstractVector, k)
-	
-	return missing
-end
-
 # ╔═╡ cf73f9f8-ee12-11ea-39ae-0107e9107ef5
 md"_Edit the cell above, or create a new cell with your own test cases!_"
 
@@ -361,6 +355,13 @@ colored_line(box_blur(v, l_box))
 let
 	result = box_blur(v, box_kernel_l)
 	colored_line(result)
+end
+
+# ╔═╡ 28e20950-ee0c-11ea-0e0a-b5f2e570b56e
+function convolve(v::AbstractVector, k)
+	l = length(k)÷2
+	kernel = OffsetArray(k, -l:l)
+	return [sum([extend(v, i - m) * kernel[m] for m in -l:l]) for i in 1:length(v)]
 end
 
 # ╔═╡ 9afc4dca-ee16-11ea-354f-1d827aaa61d2
