@@ -210,7 +210,7 @@ md"""
 # ╔═╡ 8a7d3cfd-6f19-43f0-ae16-d5a236f148e7
 function box_blur_kernel(l)
 	
-	return missing
+	return ones(2l+1)/(2l +1)
 end
 
 # ╔═╡ a34d1ad8-3776-4bc4-93e5-72cfffc54f15
